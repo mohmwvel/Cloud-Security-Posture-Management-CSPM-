@@ -1,4 +1,5 @@
 # Cloud Security Posture Management (CSPM) Tool
+[![CI](https://github.com/mohmwvel/Cloud-Security-Posture-Management-CSPM-/actions/workflows/ci.yml/badge.svg)](https://github.com/mohmwvel/Cloud-Security-Posture-Management-CSPM-/actions/workflows/ci.yml)
 
 ## Overview
 A lightweight, automated Cloud Security Posture Management (CSPM) utility designed to audit AWS environments for common security misconfigurations. This tool identifies high-risk vulnerabilities such as public data exposure and unencrypted assets, providing clear, actionable remediation paths.
@@ -88,6 +89,11 @@ cspm_tool/
 ├── requirements.txt
 └── run.py
 ```
+
+## GitHub Actions CI
+This project includes a pre-configured GitHub Actions workflow (`.github/workflows/ci.yml`) that automatically runs the test suite (`pytest`) on every push and pull request to the `main` branch. 
+
+To view the workflow runs, navigate to the **Actions** tab in your GitHub repository.
 
 ## Future Improvements
 - Implement AWS Lambda and RDS configuration scanners.
