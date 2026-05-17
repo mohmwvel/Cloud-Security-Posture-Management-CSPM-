@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scan Results - CSPM Tool</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header class="results-header">
+            <h1>Scan Results</h1>
+            <a href="/" class="btn-secondary">Back to Home</a>
+        </header>
+
+        <main>
+            {% if findings %}
+                <div class="summary-cards">
+                    <div class="stat-card">
+                        <h3>Total</h3>
+                        <p class="stat-number">{{ summary.total }}</p>
+                    </div>
+                    <div class="stat-card critical">
+                        <h3>Critical</h3>
+                        <p class="stat-number">{{ summary.critical }}</p>
+                    </div>
+                    <div class="stat-card high">
+                        <h3>High</h3>
+                        <p class="stat-number">{{ summary.high }}</p>
+                    </div>
+                    <div class="stat-card medium">
+                        <h3>Medium</h3>
+                        <p class="stat-number">{{ summary.medium }}</p>
+                    </div>
+                </div>
+
+                <div class="export-actions">
+                    <a href="/download-report" class="btn-primary">Download PDF</a>
+                    <a href="/download-json" class="btn-secondary">Export JSON</a>
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Resource ID</th>
+                                <th>Risk Level</th>
+                                <th>Issue</th>
+                                <th>Remediation Step</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for finding in findings %}
+                                <tr>
+                                    <td><strong>{{ finding.resource_id }}</strong></td>
+                                    <td>
+                                        <span class="badge risk-{{ finding.risk|lower }}">{{ finding.risk }}</span>
+                                    </td>
+                                    <td>{{ finding.issue }}</td>
+                                    <td>{{ finding.remediation }}</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            {% else %}
+                <div class="card success-card">
+                    <h2>Configuration Secure</h2>
+                    <p>No misconfigurations were detected in your environment.</p>
+                </div>
+            {% endif %}
+        </main>
+    </div>
+</body>
+</html>

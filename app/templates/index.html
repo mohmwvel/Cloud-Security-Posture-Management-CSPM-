@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS CSPM Tool</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Cloud Security Posture Management</h1>
+            <p>Automated security auditing for your AWS environment.</p>
+        </header>
+
+        <main class="landing-main">
+            <div class="card">
+                <h2>Security Scanners Included:</h2>
+                <ul class="scanner-list">
+                    <li><span class="icon">🪣</span> <strong>S3 Scanner:</strong> Detects buckets with public access.</li>
+                    <li><span class="icon">🔐</span> <strong>IAM Scanner:</strong> Identifies users without MFA enabled.</li>
+                    <li><span class="icon">🛡️</span> <strong>Security Group Scanner:</strong> Finds unrestricted SSH/RDP access.</li>
+                    <li><span class="icon">💾</span> <strong>EC2 Scanner:</strong> Detects unencrypted EBS volumes (Data at Rest).</li>
+                </ul>
+                
+                <div class="actions">
+                    <form action="/scan" method="POST" class="inline-form">
+                        <button type="submit" class="btn-primary" onclick="this.innerHTML='Scanning Environment...'; this.classList.add('loading');">Start Live Scan</button>
+                    </form>
+                    <form action="/scan" method="POST" class="inline-form">
+                        <input type="hidden" name="mock" value="true">
+                        <button type="submit" class="btn-secondary" onclick="this.innerHTML='Loading Demo Data...'; this.classList.add('loading');">Run Demo Scan</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
